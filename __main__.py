@@ -1,6 +1,24 @@
 import urllib2
 from bs4 import BeautifulSoup
-import json
+
+
+"""
+USAGE:
+
+option = OptionChain('SPY')
+
+option.all 					 returns a nested dictionary returning all option data.
+option.calls 				 returns a nested dictionary containing all calls data.
+option.puts 				 returns a nested dictionary containing all puts data.
+
+chain.calls['itm']			 returns a list of dictionaries containing in-the-money 
+							 calls elements.
+
+for x in chain.calls['itm']:
+	x['theo']  				 returns theoretical values for every itm call option.
+	
+
+"""
 
 URL = ('https://www.optionsxpress.com.au/'
 	   'OXNetTools/Chains/index.aspx?Chai'
@@ -100,13 +118,5 @@ class OptionChain():
 		self.calls = root['chain']['calls']
 		self.puts = root['chain']['puts']
 
-
-
-
-chain=OptionChain('SPY')
-
-print type(chain.calls)
-for x in chain.calls['itm']:
-	print x['theo']
 
 
