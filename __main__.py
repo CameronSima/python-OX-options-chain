@@ -44,7 +44,7 @@ def itm(results):
 
 def get_element(row, element_no):
 	element = row.text.splitlines()[element_no]
-	return float(element)
+	return float(element.replace(',',''))
 
 
 def get_dict(row):
@@ -54,6 +54,12 @@ def get_dict(row):
 		'bid' : get_element(row[0], 3),
 		'ask' : get_element(row[0], 4),
 		'theo' : get_element(row[0], 5),
+		'openInterest' : get_element(row[0], 6),
+		'Delta' : get_element(row[0], 7),
+		'Gamma' : get_element(row[0], 8),
+		'Rho' : get_element(row[0], 9),
+		'Theta' : get_element(row[0], 10),
+		'Vega' : get_element(row[0], 11),
 		'itm_or_otm' : row[1],
 		}
 
@@ -117,6 +123,4 @@ class OptionChain():
 		self.all = root
 		self.calls = root['chain']['calls']
 		self.puts = root['chain']['puts']
-
-
 
